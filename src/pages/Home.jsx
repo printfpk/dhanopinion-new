@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Suspense, useRef } from "react";
+import { Suspense, useRef, useState, useEffect } from "react";
 import SplitType from "split-type";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -89,6 +89,17 @@ const startingPoints = [
 ];
 
 export default function Home() {
+	const [videoSrc, setVideoSrc] = useState(null);
+	const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+
+	useEffect(() => {
+		// Lazy load the heavy background video so it doesn't block initial page render
+		const timer = setTimeout(() => {
+			setVideoSrc("https://dhanopinion.com/wp-content/uploads/2023/09/Market-Loop-Background-Video-High-Resolution.mp4#t=1,20");
+		}, 200);
+		return () => clearTimeout(timer);
+	}, []);
+
 	return (
 		<>
 			<div style={{ position: "relative" }}>
@@ -196,19 +207,37 @@ export default function Home() {
 										position: "relative",
 									}}
 								>
+									{/* Skeleton Loader */}
+									<div
+										className="skeleton-box"
+										style={{
+											position: "absolute",
+											inset: 0,
+											zIndex: 1,
+											opacity: isVideoLoaded ? 0 : 1,
+											transition: "opacity 0.5s ease",
+											pointerEvents: "none",
+											borderRadius: "12px"
+										}}
+									/>
+
 									<video
 										autoPlay
 										muted
 										loop
 										playsInline
+										preload="none"
+										onLoadedData={() => setIsVideoLoaded(true)}
 										style={{
 											width: "100%",
 											height: "100%",
 											objectFit: "cover",
 											display: "block",
+											opacity: isVideoLoaded ? 1 : 0,
+											transition: "opacity 0.5s ease",
 										}}
 									>
-										<source src="https://finflow.uicore.co/financial-planning/wp-content/uploads/sites/7/2023/03/financial-planning-video.mp4" type="video/mp4" />
+										{videoSrc && <source src={videoSrc} type="video/mp4" />}
 									</video>
 									{/* Small circular shape at bottom-left corner acting as a cutout */}
 									<div

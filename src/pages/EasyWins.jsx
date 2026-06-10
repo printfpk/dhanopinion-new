@@ -4,10 +4,8 @@ import { HoverFlip, RevealChar } from '../components/Animations'
 import { SpreadCards } from '../components/SpreadCards'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment, Float, useGLTF } from '@react-three/drei'
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
-
-useGLTF.preload('/money_tree.glb')
 
 function MoneyTreeModel() {
   const { scene } = useGLTF('/money_tree.glb')
@@ -45,6 +43,16 @@ const wins = [
 ]
 
 export default function EasyWins() {
+  const [load3D, setLoad3D] = useState(false);
+
+  useEffect(() => {
+    // Delay loading the heavy 3D canvas to prioritize initial page render
+    const timer = setTimeout(() => {
+      setLoad3D(true);
+    }, 300);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <>
       <div style={{ position: 'relative', overflowX: 'hidden' }}>
@@ -141,13 +149,18 @@ export default function EasyWins() {
                 viewport={{ once: true, margin: "-100px" }}
                 style={{ flex: "1 1 min(100%, 500px)", display: "flex", justifyContent: "center", alignItems: "center" }}
               >
-                <div style={{ width: "100%", maxWidth: "600px", aspectRatio: "4/3", borderRadius: "16px", background: "var(--ed-card-bg)", overflow: "hidden", boxShadow: "0 8px 24px rgba(0,0,0,0.04)", border: "1px solid var(--ed-border)", transition: "background-color 0.3s ease, border-color 0.3s ease" }}>
-                  <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
-                    <ambientLight intensity={0.8} />
-                    <directionalLight position={[10, 10, 5]} intensity={1.5} />
-                    <Environment preset="city" />
-                    <MoneyTreeModel />
-                  </Canvas>
+                <div style={{ width: "100%", maxWidth: "600px", aspectRatio: "4/3", borderRadius: "16px", background: "var(--ed-card-bg)", overflow: "hidden", boxShadow: "0 8px 24px rgba(0,0,0,0.04)", border: "1px solid var(--ed-border)", transition: "background-color 0.3s ease, border-color 0.3s ease", position: "relative" }}>
+                  {!load3D && (
+                    <div className="skeleton-box" style={{ position: "absolute", inset: 0, zIndex: 1, borderRadius: "16px" }} />
+                  )}
+                  {load3D && (
+                    <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
+                      <ambientLight intensity={0.8} />
+                      <directionalLight position={[10, 10, 5]} intensity={1.5} />
+                      <Environment preset="city" />
+                      <MoneyTreeModel />
+                    </Canvas>
+                  )}
                 </div>
               </motion.div>
             </div>
