@@ -151,7 +151,9 @@ export default function EasyWins() {
               >
                 <div style={{ width: "100%", maxWidth: "600px", aspectRatio: "4/3", borderRadius: "16px", background: "var(--ed-card-bg)", overflow: "hidden", boxShadow: "0 8px 24px rgba(0,0,0,0.04)", border: "1px solid var(--ed-border)", transition: "background-color 0.3s ease, border-color 0.3s ease", position: "relative" }}>
                   {!load3D && (
-                    <div className="skeleton-box" style={{ position: "absolute", inset: 0, zIndex: 1, borderRadius: "16px" }} />
+                    <div className="skeleton-box" style={{ position: "absolute", inset: 0, zIndex: 1, borderRadius: "16px" }}>
+                      <div className="loading-spinner"></div>
+                    </div>
                   )}
                   {load3D && (
                     <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>

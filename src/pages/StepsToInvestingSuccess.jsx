@@ -116,6 +116,105 @@ export default function StepsToInvestingSuccess() {
           </div>
         </div>
       </section>
+
+      {/* ══════ FEATURED: NPS ══════ */}
+      <section className="sec" style={{ background: "var(--ed-bg-alt)", padding: "80px 40px 160px", transition: "background 0.3s ease" }}>
+        <div className="wrap" style={{ maxWidth: "1400px" }}>
+          <div style={{ width: "100%", height: "1px", background: "var(--ed-divider)", margin: "0 auto 80px", transition: "background 0.3s ease" }}></div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            style={{
+              position: "relative",
+              overflow: "hidden",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              padding: "120px",
+              borderRadius: "24px",
+              background: "var(--ed-sec-nps)",
+              color: "var(--ed-text-main)",
+              boxShadow: "0 32px 64px rgba(0,0,0,0.05)",
+              transition: "background 0.3s ease, color 0.3s ease"
+            }}
+          >
+            {/* Top Row: Title and Pill */}
+            <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "24px" }}>
+              <div>
+                <p style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.15em",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  color: "var(--ed-accent-red)",
+                  marginBottom: "24px"
+                }}>
+                  <div style={{ width: "8px", height: "8px", background: "var(--ed-accent-red)", borderRadius: "50%", marginRight: "12px" }}></div>
+                  FEATURED TOOL
+                </p>
+                <h2 style={{
+                  fontFamily: "var(--font-editorial)",
+                  fontSize: "clamp(80px, 10vw, 120px)",
+                  color: "var(--ed-text-main)",
+                  margin: 0,
+                  maxWidth: "1000px",
+                  lineHeight: 0.9,
+                  letterSpacing: "-0.02em",
+                  fontWeight: 400
+                }}>
+                  The National Pension<br />
+                  <span style={{ fontStyle: "italic", color: "var(--ed-accent-red)" }}>System (NPS)</span>
+                </h2>
+              </div>
+            </div>
+
+            {/* Bottom Row: Description and Button */}
+            <div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "40px", marginTop: "auto", paddingTop: "120px" }}>
+              <p style={{
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "20px",
+                color: "var(--ed-text-sub)",
+                lineHeight: 1.6,
+                margin: 0,
+                maxWidth: "500px",
+                fontWeight: 400
+              }}>
+                One of the most powerful tools for retirement planning. Discover our in-depth analysis on how to utilize the NPS to secure your financial future effectively.
+              </p>
+
+              <Link
+                to="/2023/08/20/national-pension-system-nps/"
+                style={{
+                  background: "var(--ed-text-main)",
+                  color: "var(--ed-bg)",
+                  textDecoration: "none",
+                  padding: "20px 40px",
+                  fontSize: "15px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  fontWeight: 600,
+                  transition: "all 0.3s ease"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "var(--ed-accent-red)";
+                  e.currentTarget.style.color = "#FFFFFF";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "var(--ed-text-main)";
+                  e.currentTarget.style.color = "var(--ed-bg)";
+                }}
+              >
+                Read the Guide
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
     </>
   )
 }

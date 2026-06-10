@@ -202,15 +202,24 @@
 
 :root {
 	/* ── Dark Mode Defaults ── */
-	--ed-bg: #1A1918;
-	--ed-border: rgba(255, 255, 255, 0.08);
-	--ed-text-main: #EFECE6;
-	--ed-text-sub: #A3A09A;
-	--ed-card-bg: #222120;
-	--ed-card-hover: #2A2827;
-	--ed-accent-red: #B84A4A; /* Muted Red */
-	--ed-accent-gold: #C29A5B; /* Muted Gold */
-	--ed-divider: rgba(255, 255, 255, 0.05);
+	--ed-bg: #0A0A0A;
+	--ed-bg-hero: radial-gradient(circle at top right, #1A1A1A 0%, #0A0A0A 60%, #000000 100%);
+	--ed-border: rgba(255, 255, 255, 0.06);
+	--ed-text-main: #FFFFFF;
+	--ed-text-sub: #D4D4D8;
+	--ed-card-bg: rgba(24, 24, 27, 0.6); /* Subtle glass card */
+	--ed-card-hover: rgba(39, 39, 42, 0.8);
+	--ed-accent-red: #D25E5E; /* Slightly more vibrant luxury red */
+	--ed-accent-gold: #D1A965; /* Richer gold */
+	--ed-divider: rgba(255, 255, 255, 0.08);
+	
+	/* Dark mode section gradients */
+	--ed-sec-scope: linear-gradient(180deg, #000000 0%, #0C0C0C 100%);
+	--ed-sec-benefits: radial-gradient(circle at top center, #161616 0%, #050505 100%);
+	--ed-sec-notexpect: linear-gradient(135deg, #0C0C0C 0%, #000000 100%);
+	--ed-sec-audience: radial-gradient(circle at bottom right, #121212 0%, #020202 100%);
+	--ed-sec-nps: linear-gradient(180deg, #0A0A0A 0%, #161616 100%);
+	--ed-sec-cta: radial-gradient(circle at center, rgba(209, 169, 101, 0.08) 0%, #050505 80%);
 	
 	--font-editorial: 'Cormorant Garamond', serif;
 }
@@ -218,11 +227,12 @@
 :root[data-theme="light"], [data-theme="light"] {
 	/* ── Light Mode Overrides (Warm Ivory) ── */
 	--ed-bg: #F3F0E8;
+	--ed-bg-hero: linear-gradient(150deg, #FDFCFB 0%, #F3F0E8 50%, #E8E2D2 100%);
 	--ed-bg-alt: #ECE8DE;
 	--ed-bg-highlight: #EFD8AE;
 	
 	--ed-text-main: #1A1918;
-	--ed-text-sub: rgba(26, 25, 24, 0.75);
+	--ed-text-sub: rgba(26, 25, 24, 0.90);
 	
 	--ed-border: rgba(26,25,24,0.08);
 	--ed-divider: rgba(26,25,24,0.08);
@@ -232,57 +242,103 @@
 	
 	--ed-accent-red: #C97C5D;
 	--ed-accent-gold: #D8B17A;
+	
+	/* Light mode section backgrounds matching user's original */
+	--ed-sec-scope: #F7F4EE;
+	--ed-sec-benefits: #E7D3AE;
+	--ed-sec-notexpect: #ECE8DE;
+	--ed-sec-audience: #F4F1EA;
+	--ed-sec-nps: linear-gradient(135deg, #E2CFB2, #F1E6D5);
+	--ed-sec-cta: radial-gradient(circle at center, rgba(255,139,44,.28) 0%, transparent 70%) #F3D4AE;
 }
 
-/* ── Hero Peach Gradient (Light Mode) ── */
-.hero-peach-gradient {
+/* ── Hero Ambient Glow Gradient ── */
+.hero-glow-gradient {
 	position: absolute;
 	bottom: -20%;
 	left: 50%;
 	transform: translateX(-50%);
 	width: 150%;
 	height: 120%;
-	background: radial-gradient(ellipse at 50% 100%, rgba(255, 120, 0, 0.4) 0%, rgba(255, 180, 100, 0.15) 50%, transparent 80%);
+	background: radial-gradient(ellipse at 50% 100%, rgba(184, 74, 74, 0.15) 0%, rgba(194, 154, 91, 0.05) 50%, transparent 80%);
 	pointer-events: none;
 	filter: blur(80px);
 	z-index: 1;
-	opacity: 0;
-	transition: opacity 0.5s ease;
+	opacity: 1;
+	transition: background 0.5s ease;
 }
 
-[data-theme="light"] .hero-peach-gradient {
-	opacity: 1;
+[data-theme="light"] .hero-glow-gradient {
+	background: radial-gradient(ellipse at 50% 100%, rgba(255, 120, 0, 0.4) 0%, rgba(255, 180, 100, 0.15) 50%, transparent 80%);
 }
 
 /* ── Skeleton Loading Animation ── */
 @keyframes shimmer {
   0% {
-    background-position: -200% 0;
+    background-position: 200% 0;
   }
   100% {
-    background-position: 200% 0;
+    background-position: -200% 0;
   }
 }
 
 .skeleton-box {
   background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.05) 25%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.05) 75%
+    110deg,
+    rgba(255, 255, 255, 0.02) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.02) 75%
   );
   background-size: 200% 100%;
-  animation: shimmer 2s infinite linear;
+  animation: shimmer 2.5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 [data-theme="light"] .skeleton-box {
   background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.03) 25%,
-    rgba(0, 0, 0, 0.08) 50%,
-    rgba(0, 0, 0, 0.03) 75%
+    110deg,
+    rgba(0, 0, 0, 0.015) 25%,
+    rgba(0, 0, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.015) 75%
   );
   background-size: 200% 100%;
+}
+
+/* ── Premium Sweeping Line Loader ── */
+@keyframes line-sweep {
+  0% { transform: translateX(-150%); }
+  50% { transform: translateX(350%); }
+  100% { transform: translateX(-150%); }
+}
+
+.loading-spinner {
+	width: 60px;
+	height: 2px;
+	background: rgba(255, 255, 255, 0.15);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
+	border-radius: 2px;
+}
+
+.loading-spinner::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 40%;
+	background: var(--ed-accent-gold);
+	border-radius: 2px;
+	animation: line-sweep 2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+	box-shadow: 0 0 8px rgba(181, 140, 89, 0.5);
+}
+
+[data-theme="light"] .loading-spinner {
+	background: rgba(0, 0, 0, 0.08);
 }
 
 /* ── Paper Grain Texture Overlay ── */
@@ -859,7 +915,30 @@ img {
 	transform: translateX(4px);
 }
 
+/* Make explore buttons always visible on mobile/touch devices */
+@media (max-width: 768px), (hover: none) {
+	.starting-card-explore,
+	.card-hover-explore {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
 /* ── Interactive Row Link Hover ── */
+.interactive-row {
+	display: block !important;
+	position: relative;
+	overflow: hidden;
+}
+
+.interactive-row-arrow {
+	opacity: 0;
+	transform: translateY(10px);
+	max-height: 0;
+	margin-top: 0;
+	transition: all 0.3s ease;
+}
+
 .interactive-row:hover {
 	background-color: var(--ed-card-hover);
 	padding-left: var(--sp-6) !important;
@@ -872,7 +951,9 @@ img {
 
 .interactive-row:hover .interactive-row-arrow {
 	opacity: 1 !important;
-	transform: translateX(0) !important;
+	transform: translateY(0) !important;
+	max-height: 40px !important;
+	margin-top: 16px !important;
 }
 
 /* ── Interactive Block Link Hover ── */

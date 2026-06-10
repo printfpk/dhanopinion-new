@@ -113,12 +113,12 @@ export default function Home() {
 						paddingTop: "20px",
 						paddingBottom: "120px",
 						minHeight: "80vh",
-						background: "var(--ed-bg)",
-						transition: "background-color 0.3s ease"
+						background: "var(--ed-bg-hero, var(--ed-bg))",
+						transition: "background 0.3s ease"
 					}}
 				>
-					{/* Peach/Orange Gradient inspired by screenshot */}
-					<div className="hero-peach-gradient"></div>
+					{/* Ambient Glow Gradient */}
+					<div className="hero-glow-gradient"></div>
 
 					{/* Subtle Paper Grain */}
 					<div className="paper-grain"></div>
@@ -219,7 +219,9 @@ export default function Home() {
 											pointerEvents: "none",
 											borderRadius: "12px"
 										}}
-									/>
+									>
+										<div className="loading-spinner"></div>
+									</div>
 
 									<video
 										autoPlay
@@ -420,12 +422,13 @@ export default function Home() {
 			<section
 				className="sec"
 				style={{
-					background: "#F7F4EE",
-					padding: "120px 40px",
+					background: "var(--ed-sec-scope)",
+					padding: "80px 40px",
+					transition: "background 0.3s ease"
 				}}
 			>
 				<div className="wrap tc" style={{ maxWidth: "900px", margin: "0 auto" }}>
-					<div style={{ width: "100%", height: "1px", background: "rgba(26, 25, 24, 0.08)", margin: "0 auto 80px" }}></div>
+					<div style={{ width: "100%", height: "1px", background: "rgba(26, 25, 24, 0.08)", margin: "0 auto 40px" }}></div>
 
 					<p style={{
 						display: "inline-flex",
@@ -447,15 +450,15 @@ export default function Home() {
 							fontFamily: "var(--font-editorial)",
 							fontSize: "clamp(32px, 5vw, 48px)",
 							fontWeight: 500,
-							color: "#1A1918",
-							marginBottom: "80px",
+							color: "var(--ed-text-main)",
+							marginBottom: "40px",
 							justifyContent: "center",
 							fontStyle: "italic"
 						}}
 						delay={0.1}
 					/>
 
-					<div style={{ width: "60px", height: "1px", background: "var(--ed-accent-gold)", margin: "0 auto 40px" }}></div>
+					<div style={{ width: "60px", height: "1px", background: "var(--ed-accent-gold)", margin: "0 auto 32px" }}></div>
 
 					<motion.p
 						{...fade(0.3)}
@@ -463,8 +466,9 @@ export default function Home() {
 							fontFamily: "'Inter', sans-serif",
 							fontSize: "18px",
 							lineHeight: 1.7,
-							color: "rgba(26, 25, 24, 0.7)",
-							margin: "0 auto"
+							color: "var(--ed-text-sub)",
+							margin: "0 auto",
+							transition: "color 0.3s ease"
 						}}
 					>
 						The current scope covers financial assets such as mutual funds, government sponsored financial instruments and fixed deposits.
@@ -477,8 +481,9 @@ export default function Home() {
 			<section
 				className="sec"
 				style={{
-					background: "#E7D3AE",
+					background: "var(--ed-sec-benefits)",
 					padding: "160px 40px",
+					transition: "background 0.3s ease"
 				}}
 			>
 				<div className="wrap" style={{ maxWidth: "1400px" }}>
@@ -538,9 +543,9 @@ export default function Home() {
 								transition={{ duration: 0.6, delay: i * 0.1 }}
 								style={{
 									minHeight: "260px",
-									background: "#FDFBF7",
-									border: "1px solid rgba(0,0,0,.06)",
-									boxShadow: "0 8px 24px rgba(0,0,0,.04)",
+									background: "var(--ed-card-bg)",
+									border: "1px solid var(--ed-border)",
+									boxShadow: "0 8px 24px var(--ghost-border)",
 									borderRadius: "12px",
 									padding: "40px",
 									display: "flex",
@@ -576,8 +581,9 @@ export default function Home() {
 										fontSize: "clamp(24px, 2.5vw, 32px)",
 										fontWeight: 400,
 										lineHeight: 1.3,
-										color: "#1A1918",
+										color: "var(--ed-text-main)",
 										margin: 0,
+										transition: "color 0.3s ease"
 									}}>
 										{b.text}
 									</p>
@@ -592,8 +598,9 @@ export default function Home() {
 			<section
 				className="sec"
 				style={{
-					background: "#ECE8DE",
+					background: "var(--ed-sec-notexpect)",
 					padding: "160px 40px",
+					transition: "background 0.3s ease"
 				}}
 			>
 				<div className="wrap" style={{ maxWidth: "1400px" }}>
@@ -617,7 +624,7 @@ export default function Home() {
 								fontFamily: "var(--font-editorial)",
 								fontSize: "clamp(48px, 6vw, 72px)",
 								fontWeight: 500,
-								color: "#1A1918",
+								color: "var(--ed-text-main)",
 								margin: 0,
 								justifyContent: "center",
 								letterSpacing: "-0.01em",
@@ -657,9 +664,9 @@ export default function Home() {
 								style={{
 									flex: "1 1 300px",
 									minHeight: "260px",
-									background: "#FFFFFF",
-									border: "1px solid rgba(0,0,0,.08)",
-									boxShadow: "0 8px 24px rgba(0,0,0,.04)",
+									background: "var(--ed-card-bg)",
+									border: "1px solid var(--ed-border)",
+									boxShadow: "0 8px 24px var(--ghost-border)",
 									borderRadius: "12px",
 									padding: "48px 40px",
 									display: "flex",
@@ -698,17 +705,19 @@ export default function Home() {
 										fontSize: "clamp(28px, 3vw, 36px)",
 										fontWeight: 500,
 										lineHeight: 1.2,
-										color: "#1A1918",
+										color: "var(--ed-text-main)",
 										margin: 0,
+										transition: "color 0.3s ease"
 									}}>
 										{item.title}
 									</h3>
 									<p style={{
 										fontFamily: "'Inter', sans-serif",
 										fontSize: "16px",
-										color: "rgba(26, 25, 24, 0.7)",
+										color: "var(--ed-text-sub)",
 										margin: 0,
-										lineHeight: 1.6
+										lineHeight: 1.6,
+										transition: "color 0.3s ease"
 									}}>
 										{item.desc}
 									</p>
@@ -723,12 +732,13 @@ export default function Home() {
 			<section
 				className="sec"
 				style={{
-					background: "#F4F1EA",
-					padding: "160px 0"
+					background: "var(--ed-sec-audience)",
+					padding: "160px 0",
+					transition: "background 0.3s ease"
 				}}
 			>
 				<div className="wrap" style={{ maxWidth: "1400px" }}>
-					<div style={{ width: "100%", height: "1px", background: "rgba(26, 25, 24, 0.08)", margin: "0 auto 80px" }}></div>
+					<div style={{ width: "100%", height: "1px", background: "var(--ed-divider)", margin: "0 auto 80px", transition: "background 0.3s ease" }}></div>
 
 					<div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "8rem" }}>
 						{/* Left: Content */}
@@ -750,9 +760,10 @@ export default function Home() {
 								fontFamily: "var(--font-editorial)",
 								fontSize: "clamp(48px, 6vw, 72px)",
 								fontWeight: 400,
-								color: "#1A1918",
+								color: "var(--ed-text-main)",
 								marginBottom: "80px",
 								letterSpacing: "-0.01em",
+								transition: "color 0.3s ease",
 								lineHeight: 1.1
 							}}>
 								Who is <span style={{ fontStyle: "italic", color: "var(--ed-accent-red)" }}>it for?</span>
@@ -762,21 +773,23 @@ export default function Home() {
 								<p style={{
 									fontFamily: "'Inter', sans-serif",
 									fontSize: "20px",
-									color: "#1A1918",
+									color: "var(--ed-text-main)",
 									lineHeight: 1.7,
 									fontWeight: 400,
 									margin: 0,
-									maxWidth: 560
+									maxWidth: 560,
+									transition: "color 0.3s ease"
 								}}>
 									The resources on this website will be of help to anyone interested in investing. However, the primary focus of the content is individual investors who have limited time, resources and expertise to devote to investment research and analyses.
 								</p>
 								<p style={{
 									fontFamily: "'Inter', sans-serif",
 									fontSize: "16px",
-									color: "rgba(26, 25, 24, 0.7)",
+									color: "var(--ed-text-sub)",
 									lineHeight: 1.7,
 									margin: 0,
-									maxWidth: 560
+									maxWidth: 560,
+									transition: "color 0.3s ease"
 								}}>
 									Every individual can also get some simple guidance to have a pretty good solution without knowing or learning too much about this, but everyone should learn a little bit.
 								</p>
@@ -811,6 +824,7 @@ export default function Home() {
 									<img
 										src="https://dhanopinion.com/wp-content/uploads/2023/09/pexels-ketut-subiyanto-4308025.jpg"
 										alt="Target Audience"
+										loading="lazy"
 										style={{
 											width: "100%",
 											height: "100%",
@@ -826,114 +840,19 @@ export default function Home() {
 				</div>
 			</section>
 
-			{/* ══════ FEATURED: NPS (VISUAL CENTERPIECE) ══════ */}
-			<section className="sec" style={{ background: "#F4F1EA", padding: "80px 40px 160px" }}>
-				<div className="wrap" style={{ maxWidth: "1400px" }}>
-					<div style={{ width: "100%", height: "1px", background: "rgba(26, 25, 24, 0.08)", margin: "0 auto 80px" }}></div>
 
-					<motion.div
-						initial={{ opacity: 0, y: 40 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						viewport={{ once: true, margin: "-100px" }}
-						transition={{ duration: 0.8 }}
-						style={{
-							position: "relative",
-							overflow: "hidden",
-							display: "flex",
-							flexDirection: "column",
-							justifyContent: "space-between",
-							padding: "120px",
-							borderRadius: "24px",
-							background: "linear-gradient(135deg, #E2CFB2, #F1E6D5)",
-							color: "var(--ed-text-main)",
-							boxShadow: "0 32px 64px rgba(0,0,0,0.05)"
-						}}
-					>
-						{/* Top Row: Title and Pill */}
-						<div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "flex-start", flexWrap: "wrap", gap: "24px" }}>
-							<div>
-								<p style={{
-									display: "inline-flex",
-									alignItems: "center",
-									textTransform: "uppercase",
-									letterSpacing: "0.15em",
-									fontSize: "12px",
-									fontWeight: 600,
-									color: "var(--ed-accent-red)",
-									marginBottom: "24px"
-								}}>
-									<div style={{ width: "8px", height: "8px", background: "var(--ed-accent-red)", borderRadius: "50%", marginRight: "12px" }}></div>
-									FEATURED TOOL
-								</p>
-								<h2 style={{
-									fontFamily: "var(--font-editorial)",
-									fontSize: "clamp(80px, 10vw, 120px)",
-									color: "var(--ed-text-main)",
-									margin: 0,
-									maxWidth: "1000px",
-									lineHeight: 0.9,
-									letterSpacing: "-0.02em",
-									fontWeight: 400
-								}}>
-									The National Pension<br />
-									<span style={{ fontStyle: "italic", color: "var(--ed-accent-red)" }}>System (NPS)</span>
-								</h2>
-							</div>
-						</div>
-
-						{/* Bottom Row: Description and Button */}
-						<div style={{ position: "relative", zIndex: 1, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "40px", marginTop: "auto", paddingTop: "120px" }}>
-							<p style={{
-								fontFamily: "'Inter', sans-serif",
-								fontSize: "20px",
-								color: "var(--ed-text-sub)",
-								lineHeight: 1.6,
-								margin: 0,
-								maxWidth: "500px",
-								fontWeight: 400
-							}}>
-								One of the most powerful tools for retirement planning. Discover our in-depth analysis on how to utilize the NPS to secure your financial future effectively.
-							</p>
-
-							<Link
-								to="/2023/08/20/national-pension-system-nps/"
-								style={{
-									background: "var(--ed-text-main)",
-									color: "var(--ed-bg)",
-									textDecoration: "none",
-									padding: "20px 40px",
-									fontSize: "15px",
-									textTransform: "uppercase",
-									letterSpacing: "0.1em",
-									fontWeight: 600,
-									transition: "all 0.3s ease"
-								}}
-								onMouseEnter={(e) => {
-									e.currentTarget.style.background = "var(--ed-accent-red)";
-									e.currentTarget.style.color = "#FFFFFF";
-								}}
-								onMouseLeave={(e) => {
-									e.currentTarget.style.background = "var(--ed-text-main)";
-									e.currentTarget.style.color = "var(--ed-bg)";
-								}}
-							>
-								Read the Guide
-							</Link>
-						</div>
-					</motion.div>
-				</div>
-			</section>
 
 			{/* ══════ CTA — Waitlist ══════ */}
 			<section
 				className="sec"
 				style={{
-					background: "radial-gradient(circle at center, rgba(255,139,44,.28) 0%, transparent 70%) #F3D4AE",
-					padding: "160px 40px"
+					background: "var(--ed-sec-cta)",
+					padding: "160px 40px",
+					transition: "background 0.3s ease"
 				}}
 			>
 				<div className="wrap tc" style={{ maxWidth: "800px", margin: "0 auto" }}>
-					<div style={{ width: "100%", height: "1px", background: "rgba(26, 25, 24, 0.08)", margin: "0 auto 80px" }}></div>
+					<div style={{ width: "100%", height: "1px", background: "var(--ed-divider)", margin: "0 auto 80px", transition: "background 0.3s ease" }}></div>
 
 					<p style={{
 						display: "inline-flex",

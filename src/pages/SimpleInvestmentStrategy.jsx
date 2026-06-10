@@ -58,6 +58,7 @@ export default function SimpleInvestmentStrategy() {
                 <img 
                   src={chessImage} 
                   alt="Chess Strategy" 
+                  loading="lazy"
                   style={{ width: '100%', height: 'auto', borderRadius: '4px', position: 'relative', zIndex: 1, boxShadow: '0 8px 24px rgba(0,0,0,0.08)' }} 
                 />
               </div>
@@ -95,10 +96,7 @@ export default function SimpleInvestmentStrategy() {
                   to={item.link}
                   className="interactive-row"
                   style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    justifyContent: 'space-between',
-                    gap: 'var(--sp-5)',
+                    display: 'block', 
                     padding: 'var(--sp-4) var(--sp-5)',
                     borderBottom: '1px solid var(--ed-border)',
                     textDecoration: 'none',
@@ -112,8 +110,6 @@ export default function SimpleInvestmentStrategy() {
                   <div className="interactive-row-arrow" style={{
                     color: 'var(--ed-accent-red)',
                     fontWeight: 600,
-                    opacity: 0,
-                    transform: 'translateX(-10px)',
                     transition: 'all 0.3s ease',
                     display: 'flex',
                     alignItems: 'center',
